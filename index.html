@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Result Sheet using Javascript</title>
+	<meta name="keywords" content="grading sheet, students result, score sheet">
+	<meta name="description" content="Students Gradinng Sheet: A platform to grade student's performance after an examination.">
+	<meta name="author" content="Mr. Kalio Tamunotonye">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+	<style type="text/css">
+		.container {
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+
+
+	<div class="container" style="width: 60%; height: 90vh; margin: auto; text-transform: uppercase;">
+
+
+		<div class="row" style="font-weight: bold; text-align: center; padding: 20px;">
+			
+			<div class="col-md-12">
+				<h4>Student's Performance Sheet</h4>
+			</div>
+
+		</div>
+
+
+		<div class="row" style="font-weight: bold; padding-bottom: 8px">
+			<div class="col-md-4">
+				<h6>Subject</h6>
+			</div>
+
+			<div class="col-md-4">
+				<h6>Score</h6>
+			</div>
+
+			<div class="col-md-4">
+				<h6>Grade</h6>
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<p>English</p>
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="score1" id="score1">
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="grade1" id="grade1">
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<p>Maths</p>
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="score2" id="score2">
+			</div>
+
+
+			<div class="col-md-4">
+				<input type="text" name="grade2" id="grade2">
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<p>Chemistry</p>
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="score3" id="score3">
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="grade3" id="grade3">
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<p>Biology</p>
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="score4" id="score4">
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="grade4" id="grade4">
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-4">
+				<p>French</p>
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="score5" id="score5">
+			</div>
+
+			<div class="col-md-4">
+				<input type="text" name="grade5" id="grade5">
+			</div>
+		</div>
+
+
+		<div class="row" style="height: 70px">
+			<div class="col-md-4 align-self-center">
+				<input type="button" name="submit" id="submit" value="GET RESULT" onclick="
+					var english = document.getElementById('score1').value;
+					var maths = document.getElementById('score2').value;
+					var chemistry = document.getElementById('score3').value;
+					var biology = document.getElementById('score4').value;
+					var french = document.getElementById('score5').value;
+					mathsGrade(); englishGrade(); chemistryGrade(); biologyGrade(); frenchGrade();
+					var newTotal = totalScore(english, maths, chemistry, biology, french);
+					document.getElementById('totalResult').innerHTML = newTotal;
+					document.getElementById('averageResult').innerHTML = averageScore(newTotal);
+				">
+			</div>
+		</div>
+
+
+		<div class="row" style="height: 70px">
+			<div class="col-md-4">
+				<h6>Total</h6>
+			</div>
+
+			<div class="col-md-4" id="totalResult">
+				
+			</div>
+		</div>
+
+
+		<div class="row" style="height: 70px">
+			<div class="col-md-4">
+				<h6>remarks</h6>
+			</div>
+
+			<div class="col-md-4" id="remark">
+				
+			</div>
+
+			<div class="col-md-4">
+				<img src="" alt="" id="remarkIcon" class="img-fluid" width="80%" height="70px">
+			</div>
+		</div>
+
+
+		<div class="row" style="height: 70px">
+			<div class="col-md-4">
+				<h6>Average</h6>
+			</div>
+
+			<div class="col-md-4" id="averageResult">
+				
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+
+
+
+
+
+	<script type="text/javascript">
+
+
+		function totalScore(english, maths, chemistry, biology, french) {
+			var total = parseFloat(english) + parseFloat(maths) + parseFloat(chemistry) + parseFloat(biology) + parseFloat(french);
+			return total;
+		}
+
+		function averageScore(newTotal) {
+			var average = parseFloat(newTotal) / 5;
+			if (average >= 50) {
+				document.getElementById('remark').innerHTML ='Passed';
+				document.getElementById('remarkIcon').src = 'images/smiling.png';
+			}
+			else {
+				document.getElementById('remark').innerHTML ='Failed';
+				document.getElementById('remarkIcon').src = 'images/crying.png';
+			}
+			return average;
+		}
+
+		function englishGrade() {
+			var english = document.getElementById('score1').value;
+							
+			if ((english >= 0) && (english < 40)) {
+				document.getElementById('grade1').value = 'F';
+			}
+			else if ((english >= 40) && (english < 46)) {
+				document.getElementById('grade1').value = 'E';
+			}
+			else if ((english >= 46) && (english < 50)) {
+				document.getElementById('grade1').value = 'D';
+			}
+			else if ((english >= 50) && (english < 60)) {
+				document.getElementById('grade1').value = 'C';
+			}
+			else if ((english >= 60) && (english < 70)) {
+				document.getElementById('grade1').value = 'B';
+			}
+			else if ((english >= 70) && (english < 101)) {
+				document.getElementById('grade1').value = 'A';
+			}
+			else {
+				document.getElementById('grade1').value = 'Invalid';
+			}
+		}
+
+
+		function mathsGrade() {
+			var maths = document.getElementById('score2').value;
+							
+			if ((maths >= 0) && (maths < 40)) {
+				document.getElementById('grade2').value = 'F';
+			}
+			else if ((maths >= 40) && (maths < 46)) {
+				document.getElementById('grade2').value = 'E';
+			}
+			else if ((maths >= 46) && (maths < 50)) {
+				document.getElementById('grade2').value = 'D';
+			}
+			else if ((maths >= 50) && (maths < 60)) {
+				document.getElementById('grade2').value = 'C';
+			}
+			else if ((maths >= 60) && (maths < 70)) {
+				document.getElementById('grade2').value = 'B';
+			}
+			else if ((maths >= 70) && (maths < 101)) {
+				document.getElementById('grade2').value = 'A';
+			}
+			else {
+				document.getElementById('grade2').value = 'Invalid';
+			}
+		}
+
+
+		function chemistryGrade() {
+			var chemistry = document.getElementById('score3').value;
+							
+			if ((chemistry >= 0) && (chemistry < 40)) {
+				document.getElementById('grade3').value = 'F';
+			}
+			else if ((chemistry >= 40) && (chemistry < 46)) {
+				document.getElementById('grade3').value = 'E';
+			}
+			else if ((chemistry >= 46) && (chemistry < 50)) {
+				document.getElementById('grade3').value = 'D';
+			}
+			else if ((chemistry >= 50) && (chemistry < 60)) {
+				document.getElementById('grade3').value = 'C';
+			}
+			else if ((chemistry >= 60) && (chemistry < 70)) {
+				document.getElementById('grade3').value = 'B';
+			}
+			else if ((chemistry >= 70) && (chemistry < 101)) {
+				document.getElementById('grade3').value = 'A';
+			}
+			else {
+				document.getElementById('grade3').value = 'Invalid';
+			}
+		}
+
+
+		function biologyGrade() {
+			var biology = document.getElementById('score4').value;
+							
+			if ((biology >= 0) && (biology < 40)) {
+				document.getElementById('grade4').value = 'F';
+			}
+			else if ((biology >= 40) && (biology < 46)) {
+				document.getElementById('grade4').value = 'E';
+			}
+			else if ((biology >= 46) && (biology < 50)) {
+				document.getElementById('grade4').value = 'D';
+			}
+			else if ((biology >= 50) && (biology < 60)) {
+				document.getElementById('grade4').value = 'C';
+			}
+			else if ((biology >= 60) && (biology < 70)) {
+				document.getElementById('grade4').value = 'B';
+			}
+			else if ((biology >= 70) && (biology < 101)) {
+				document.getElementById('grade4').value = 'A';
+			}
+			else {
+				document.getElementById('grade4').value = 'Invalid';
+			}
+		}
+
+
+		function frenchGrade() {
+			var french = document.getElementById('score5').value;
+							
+			if ((french >= 0) && (french < 40)) {
+				document.getElementById('grade5').value = 'F';
+			}
+			else if ((french >= 40) && (french < 46)) {
+				document.getElementById('grade5').value = 'E';
+			}
+			else if ((french >= 46) && (french < 50)) {
+				document.getElementById('grade5').value = 'D';
+			}
+			else if ((french >= 50) && (french < 60)) {
+				document.getElementById('grade5').value = 'C';
+			}
+			else if ((french >= 60) && (french < 70)) {
+				document.getElementById('grade5').value = 'B';
+			}
+			else if ((french >= 70) && (french < 101)) {
+				document.getElementById('grade5').value = 'A';
+			}
+			else {
+				document.getElementById('grade5').value = 'Invalid';
+			}
+		}
+
+
+
+	</script>
+
+
+		<!-- Javascript Files -->
+		<script src="bootstrap/js/jquery.min.js" type="text/javascript"></script>
+		<script src="bootstrap/js/popper.min.js" type="text/javascript"></script>
+		<script src="bootstrap/js/bootstrap.js" type="text/javascript"></script>
+</body>
+</html>
